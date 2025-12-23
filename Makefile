@@ -67,10 +67,11 @@ pytest:
 #: Run tests that appear in docstring in the code.
 
 
-#: Make distirbution: wheels, eggs, tarball
+#: Make distribution: wheels, eggs, tarball
 dist:
 	./admin-tools/make-dist.sh
 
+#: Run tests that appear in docstring in the code.
 doctest:
 	MATHICS_CHARACTER_ENCODING="ASCII" $(PYTHON) -m mathics.docpipeline -l pymathics.natlang -c 'Natural Language Processing' $o
 
