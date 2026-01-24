@@ -9,6 +9,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      NLTK_DATA: "/tmp"
     strategy:
       matrix:
         python-version: ['3.12', '3.13']
@@ -28,6 +30,7 @@ jobs:
         git clone https://github.com/Mathics3/mathics-core
         (cd mathics-core && python -m pip install -e .[full])
         (cd mathics-core && bash ./admin-tools/make-JSON-tables.sh)
+        python ./admin-tools/download-bcp47.py
 
     - name: Install Mathics3 Module nltk
       run: |

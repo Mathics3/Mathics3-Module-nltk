@@ -13,7 +13,6 @@ Language Translation
 from typing import Union
 
 import langid  # see https://github.com/saffsd/langid.py
-import nltk.langnames as lgn
 import pycountry
 from mathics.core.atoms import String
 from mathics.core.builtin import Builtin
@@ -23,6 +22,13 @@ from mathics.core.symbols import Symbol
 from mathics.core.systemsymbols import SymbolFailed
 from nltk.corpus import wordnet as wn
 from nltk.corpus.reader.wordnet import WordNetError
+
+try:
+    import nltk.langnames as lgn
+except ImportError:
+    have_lng = False
+else:
+    have_lng = True
 
 sort_order = "Language Translation"
 
@@ -55,52 +61,52 @@ class LanguageIdentify(Builtin):
         return String(language.name)
 
 
-# FIXME generalize
-class WordTranslation(Builtin):
-    """
-    <url>:WMA link:
-    https://reference.wolfram.com/language/ref/WordTranslation.html</url>
+if have_lng:
 
-    <dl>
-      <dt>'WordTranslation'[word, $lang$]
-      <dd>returns a list of translation for $word$ into $lang$.
-    </dl>
+    # FIXME generalize
+    class WordTranslation(Builtin):
+        """
+        <url>:WMA link:
+        https://reference.wolfram.com/language/ref/WordTranslation.html</url>
 
-    >> WordTranslation["dog", "French"]
-     = ...
-    """
+        <dl>
+          <dt>'WordTranslation'[word, $lang$]
+          <dd>returns a list of translation for $word$ into $lang$.
+        </dl>
 
-    summary_text = "give word translations"
+        >> WordTranslation["dog", "French"]
+         = ...
+        """
 
-    def eval(
-        self, word: String, lang: String, evaluation: Evaluation
-    ) -> ListExpression:
-        "WordTranslation[word_String, lang_String]"
-        return eval_WordTranslation(word.value, lang.value)
+        summary_text = "give word translations"
 
+        def eval(
+            self, word: String, lang: String, evaluation: Evaluation
+        ) -> ListExpression:
+            "WordTranslation[word_String, lang_String]"
+            return eval_WordTranslation(word.value, lang.value)
 
-# FIXME generalize
-def eval_WordTranslation(word: str, language_name: str):
-    """
-    Return a list of translations of `word` in English to `language_name`.
-    """
+    def eval_WordTranslation(word: str, language_name: str):
+        """
+        Return a list of translations of `word` in English to `language_name`.
+        """
 
-    # Convert "language_name" using NLTK's langnames utility
-    # to its 3-letter ISO 639-3 code.
-    iso_code = lgn.langcode(language_name, typ=3)
+        # Convert "language_name" using NLTK's langnames utility
+        # to its 3-letter ISO 639-3 code.
+        iso_code = lgn.langcode(language_name, typ=3)
 
-    if iso_code is None:
-        return SymbolFailed
-
-    synsets = wn.synsets(word)
-    translations = set()
-
-    for ss in synsets:
-        # Pass the converted code to WordNet
-        try:
-            for lemma in ss.lemmas(lang=iso_code):
-                translations.add(lemma.name())
-        except WordNetError:
+        if iso_code is None:
             return SymbolFailed
 
-    return ListExpression(*[String(word) for word in translations])
+        synsets = wn.synsets(word)
+        translations = set()
+
+        for ss in synsets:
+            # Pass the converted code to WordNet
+            try:
+                for lemma in ss.lemmas(lang=iso_code):
+                    translations.add(lemma.name())
+            except WordNetError:
+                return SymbolFailed
+
+        return ListExpression(*[String(word) for word in translations])
