@@ -78,6 +78,10 @@ if have_lng:
          = ...
         """
 
+        # Set checking that the number of arguments required is one.
+        eval_error = Builtin.generic_argument_error
+        expected_args = 2
+
         summary_text = "give word translations"
 
         def eval(
