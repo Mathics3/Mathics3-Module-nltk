@@ -30,12 +30,11 @@ jobs:
         git clone https://github.com/Mathics3/mathics-core
         (cd mathics-core && python -m pip install -e .[full])
         (cd mathics-core && bash ./admin-tools/make-JSON-tables.sh)
-        python ./admin-tools/download-bcp47.py
 
     - name: Install Mathics3 Module nltk
       run: |
         python -m pip install --no-build-isolation setuptools Mathics3[full] nltk PatternLite enchant
-        make develop
     - name: Test Mathics3 Module nltk
       run: |
+        make develop
         make -j3 check

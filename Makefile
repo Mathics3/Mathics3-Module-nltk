@@ -42,12 +42,9 @@ pypi-setup:
 	$(PIP) install --no-build-isolation -e .
 
 #: Set up to run from the source tree
-develop: pypi-setup download-bcp47
+develop: pypi-setup
 	$(MAKE) wordlist
-
-#: Install Mathics3 Module nltk
-install: pypi-setup
-	$(PYTHON) setup.py install
+	$(MAKE) download-bcp47
 
 #: Run tests
 test check: pytest doctest

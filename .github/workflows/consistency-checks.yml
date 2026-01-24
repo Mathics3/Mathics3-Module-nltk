@@ -9,6 +9,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      NLTK_DATA: "/tmp"
     strategy:
       matrix:
         python-version: ['3.13']
@@ -33,7 +35,7 @@ jobs:
     - name: Install Mathics3 Module nltk
       run: |
         python -m pip install --no-build-isolation setuptools Mathics3[full] nltk PatternLite enchant
-        make develop
     - name: Test Mathics Consistency and Style
       run: |
+        make develop
         make check-consistency-and-style
