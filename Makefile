@@ -28,6 +28,10 @@ SPACY_DOWNLOAD ?= $(lang)_core_web_$(WORDLIST_SIZE)
 #: Default target - same as "develop"
 all: develop
 
+#: Download bcp47 which is used needed to support Mathics3 builtin WordTranslation
+download-bcp47:
+	$(PYTHON) ./admin-tools/download-bcp47.py
+
 #: Word-list data. Customize with lang and eventually WORDLIST_SIZE variables
 wordlist:
 	$(PYTHON) -m nltk.downloader wordnet2022 omw-1.4
@@ -40,10 +44,7 @@ pypi-setup:
 #: Set up to run from the source tree
 develop: pypi-setup
 	$(MAKE) wordlist
-
-#: Install Mathics3 Module nltk
-install: pypi-setup
-	$(PYTHON) setup.py install
+	$(MAKE) download-bcp47
 
 #: Run tests
 test check: pytest doctest

@@ -1,5 +1,6 @@
 *~
 .python-version
+/.nltk_data
 /.python-version
 /ChangeLog
 /ChangeLog-spell-corrected
