@@ -9,6 +9,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      NLTK_DATA: "/tmp"
     strategy:
       matrix:
         python-version: ['3.13']
@@ -37,4 +39,5 @@ jobs:
         make develop
     - name: Test Mathics3 Consistency and Style
       run: |
+        make develop
         make check-consistency-and-style

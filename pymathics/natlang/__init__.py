@@ -48,7 +48,6 @@ from pymathics.natlang.linguistic_data import (
     WordDefinition,
     WordList,
 )
-from pymathics.natlang.linguistic_data.translation import LanguageIdentify
 from pymathics.natlang.manipulate import Pluralize
 from pymathics.natlang.normalization import (
     DeleteStopwords,
@@ -66,6 +65,7 @@ from pymathics.natlang.textual_analysis import (
     WordSimilarity,
     WordStem,
 )
+from pymathics.natlang.translation import LanguageIdentify, WordTranslation
 from pymathics.natlang.version import __version__
 
 pymathics_version_data = {
@@ -98,6 +98,7 @@ __all__ = [
     "WordList",
     "WordSimilarity",
     "WordStem",
+    "WordTranslation",
     "__version__",
     "pymathics_version_data",
 ]

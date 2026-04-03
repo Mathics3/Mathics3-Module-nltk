@@ -9,6 +9,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      NLTK_DATA: "/tmp"
     strategy:
       matrix:
         python-version: ['3.12', '3.13', '3.14']
