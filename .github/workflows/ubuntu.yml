@@ -29,7 +29,7 @@ jobs:
         # python -m pip install -e git+https://github.com/Mathics3/mathics-scanner#egg=Mathics-Scanner[full]
         # Until the next mathics-core release
         git clone https://github.com/Mathics3/mathics-core
-        (cd mathics-core && pip3 install -e .[full] --no-build-isolation)
+        (cd mathics-core && pip3 install --no-biuild-isolation -e .[full])
         (cd mathics-core && bash -x ./admin-tools/make-JSON-tables.sh)
 
     - name: Install Mathics3 Module nltk
