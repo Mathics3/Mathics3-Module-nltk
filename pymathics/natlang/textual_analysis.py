@@ -13,7 +13,6 @@ from typing import Optional
 import enchant
 import nltk
 import spacy
-
 from mathics.core.atoms import Integer, Real, String
 from mathics.core.builtin import Builtin
 from mathics.core.evaluation import Evaluation
