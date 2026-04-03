@@ -3,17 +3,17 @@
 """
 nltk backend
 """
+
 import re
 from itertools import chain
 
 import nltk
-from pattern.text.en import lexeme, pluralize
-
 from mathics.builtin.codetables import iso639_3
 from mathics.core.atoms import String
 from mathics.core.builtin import Builtin, MessageException
 from mathics.core.evaluation import Evaluation
 from mathics.core.symbols import strip_context
+from pattern.text.en import lexeme, pluralize
 
 # Don't consider this for user documentation
 no_doc = True

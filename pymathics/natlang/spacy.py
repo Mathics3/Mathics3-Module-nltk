@@ -12,7 +12,6 @@ import re
 from typing import Optional
 
 import spacy
-
 from mathics.core.atoms import String
 from mathics.core.builtin import Builtin
 from mathics.core.evaluation import Evaluation
