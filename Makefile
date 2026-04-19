@@ -18,7 +18,10 @@ WORDLIST_SIZE ?= md
 SPACY_DOWNLOAD ?= $(lang)_core_web_$(WORDLIST_SIZE)
 
 .PHONY: all build \
-   check clean \
+   ChangeLog-without-corrections \
+   check \
+   check-consistency-and-style \
+   clean \
    develop dist doc doc-data \
    pypi-setup \
    pytest \
@@ -81,15 +84,19 @@ doctest:
 # doc mathics.pdf: mathics/doc/tex/data
 # 	(cd mathics/doc/tex && $(MAKE) mathics.pdf)
 
+
+#: Run pytest consistency and style checks
+check-consistency-and-style:
+	MATHICS_LINT=t $(PYTHON) -m pytest test/consistency-and-style
+
+#: Create ChangeLog from version control without corrections
+ChangeLog-without-corrections:
+	git log --pretty --numstat --summary | $(GIT2CL) >ChangeLog
+
 #: Remove ChangeLog
 rmChangeLog:
 	$(RM) ChangeLog || true
 
 #: Create a ChangeLog from git via git log and git2cl
-ChangeLog: rmChangeLog
-	git log --pretty --numstat --summary | $(GIT2CL) >$@
-	patch ChangeLog < ChangeLog-spell-corrected.diff
-
-#: Run pytest consistency and style checks
-check-consistency-and-style:
-	MATHICS_LINT=t $(PYTHON) -m pytest test/consistency-and-style
+ChangeLog: rmChangeLog ChangeLog-without-corrections
+	patch -p0 ChangeLog < ChangeLog-spell-corrected.diff

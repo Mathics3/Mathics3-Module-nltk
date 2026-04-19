@@ -2,7 +2,7 @@
 requires = [
 	"setuptools",
         "Mathics3-Module-Base",
-        "Mathics3>9.0.0",
+        "Mathics3>=10.0.0",
         "PatternLite",
         "langid",  # replace with a supported newer package, e.g. via spacy
         "matplotlib",
@@ -20,7 +20,7 @@ build-backend = "setuptools.build_meta"
 name = "Mathics3-Module-nltk"
 description = "Mathics3 Natural Language Toolkit module"
 dependencies = [
-        "Mathics3>9.0.0",
+        "Mathics3>=10.0.0",
         "Mathics3-Module-Base>=9.0.0",
         "click>=8.0",
         "joblib>=1.0.1",
@@ -39,7 +39,7 @@ readme = "README.rst"
 license = "GPL-3.0-or-later"
 keywords = ["Mathematica", "Wolfram", "Interpreter", "Shell", "Math", "CAS"]
 maintainers = [
-    {name = "Mathics Group", email = "mathics-devel@googlegroups.com"},
+    {name = "Mathics3 Group", email = "mathics-devel@googlegroups.com"},
 ]
 classifiers = [
     "Intended Audience :: Developers",
@@ -50,7 +50,6 @@ classifiers = [
     "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: 3.14",
     "Programming Language :: Python :: Implementation :: CPython",
-    "Programming Language :: Python :: Implementation :: PyPy",
     "Topic :: Scientific/Engineering",
     "Topic :: Scientific/Engineering :: Mathematics",
     "Topic :: Software Development :: Interpreters",

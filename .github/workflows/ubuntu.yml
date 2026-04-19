@@ -4,7 +4,7 @@ on:
   push:
     branches: [ master ]
   pull_request:
-    branches: '**'
+    branches: [ master ]
 
 jobs:
   build:
@@ -24,15 +24,14 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         python -m pip install pytest setuptools
-        # Go over and comment out stuff when next Mathics core and Mathics-scanner are released
-        # Go over and comment out stuff when next Mathics core and Mathics3-scanner are released
-        git clone https://github.com/Mathics3/Mathics3-scanner
-        (cd Mathics3-scanner && pip3 install -e .[full] --no-build-isolation && bash -x ./admin-tools/make-JSON-tables.sh)
+        # Go over and comment out stuff when next Mathics3 core and Mathics3-scanner are released
+        # git clone https://github.com/Mathics3/Mathics3-scanner
+        # (cd Mathics3-scanner && pip3 install -e .[full] --no-build-isolation && bash -x ./admin-tools/make-JSON-tables.sh)
         # python -m pip install -e git+https://github.com/Mathics3/mathics-scanner#egg=Mathics-Scanner[full]
         # Until the next mathics-core release
-        git clone https://github.com/Mathics3/mathics-core
-        (cd mathics-core && pip3 install --no-biuild-isolation -e .[full])
-        (cd mathics-core && bash -x ./admin-tools/make-JSON-tables.sh)
+        # git clone https://github.com/Mathics3/mathics-core
+        # (cd mathics-core && pip3 install --no-biuild-isolation -e .[full])
+        # (cd mathics-core && bash -x ./admin-tools/make-JSON-tables.sh)
 
     - name: Install Mathics3 Module nltk
       run: |
@@ -41,4 +40,5 @@ jobs:
         python -m pip install -e .[full] --no-build-isolation
         # make develop
     - name: Test Mathics3 Module nltk
+      run: |
         make -j3 check

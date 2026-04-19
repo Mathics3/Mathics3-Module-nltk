@@ -38,7 +38,7 @@ def check_evaluation(
     expected_messages: Optional[tuple] = None,
 ):
     """
-    Helper function to test Mathics expression against
+    Helper function to test Mathics3 expression against
     its results
 
     Compares the expressions represented by ``str_expr`` and  ``str_expected`` by

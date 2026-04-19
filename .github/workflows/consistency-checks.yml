@@ -13,7 +13,7 @@ jobs:
       NLTK_DATA: "/tmp"
     strategy:
       matrix:
-        python-version: ['3.13']
+        python-version: ['3.14']
     steps:
     - uses: actions/checkout@v6
     - name: Set up Python ${{ matrix.python-version }}
@@ -26,12 +26,12 @@ jobs:
         python -m pip install pytest setuptools
         python -m pip install Mathics3-Module-Base
         # Until the next Mathics3-scanner release
-        git clone https://github.com/Mathics3/Mathics3-scanner
-        (cd Mathics3-scanner && pip3 install -e .[full] --no-build-isolation && bash -x ./admin-tools/make-JSON-tables.sh)
+        # git clone https://github.com/Mathics3/Mathics3-scanner
+        #(cd Mathics3-scanner && pip3 install -e .[full] --no-build-isolation && bash -x ./admin-tools/make-JSON-tables.sh)
         # Until the next mathics-core release
-        git clone https://github.com/Mathics3/mathics-core
-        (cd mathics-core && python -m pip install --no-build-isolation -e .[full])
-        (cd mathics-core && bash ./admin-tools/make-JSON-tables.sh)
+        # git clone https://github.com/Mathics3/mathics-core
+        # (cd mathics-core && python -m pip install --no-build-isolation -e .[full])
+        # (cd mathics-core && bash ./admin-tools/make-JSON-tables.sh)
 
     - name: Install Mathics3 Module nltk
       run: |

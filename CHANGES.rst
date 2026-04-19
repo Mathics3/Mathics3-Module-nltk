@@ -1,6 +1,17 @@
 CHANGES
 =======
 
+10.0.0
+------
+
+April 19, 2026
+
+Supports Python 3.14. Python 3.10 support dropped. Python 3.10 may still work, but it's not supported.
+
+* Add basic ``WordTranslation``.
+* Adjust for 10.0.0 API
+
+
 9.0.2
 -----
 
@@ -40,7 +51,7 @@ Adjust and correct packaging.
 
 Jan 26, 2025
 
-This release tracks the API changes in the Mathics Kernel.
+This release tracks the API changes in the Mathics3 Kernel.
 
 
 Use the PyPI package ``PatternLite`` instead of the defunct 3.6-ish ``pattern`` (which has now been replaced with something totally different from NLP).
@@ -83,12 +94,12 @@ We should assess the landscape for changes in modules that might be used here; t
 2.2.0
 -----
 
-Re-Release to use released Mathics 2.2.0
+Re-Release to use released Mathics3 2.2.0
 
 1.1.0
 -----
 
-Re-Release to use released Mathics 1.1.0
+Re-Release to use released Mathics3 1.1.0
 
 * tests added.
 * README.rst has been updated with examples.
