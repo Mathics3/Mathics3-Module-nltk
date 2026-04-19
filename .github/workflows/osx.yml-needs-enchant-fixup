@@ -28,7 +28,7 @@ jobs:
         brew install llvm lld tesseract enchant mysql
         python -m pip install --upgrade pip
         pip install pytest pyenchant
-        # Go over and comment out stuff when next Mathics core and Mathics-scanner are released
+        # Go over and comment out stuff when next Mathics3 core and Mathics-scanner are released
         python -m pip install -e git+https://github.com/Mathics3/mathics-scanner#egg=Mathics-Scanner[full]
         git clone https://github.com/Mathics3/mathics-core
         (cd mathics-core && pip3 install -e .[full])
@@ -38,6 +38,6 @@ jobs:
     - name: Install Mathics3 Module nltk
       run: |
         make develop
-    - name: Test Mathics Module nltk
+    - name: Test Mathics3 Module nltk
       run: |
         make check

@@ -1,10 +1,10 @@
 #!/bin/bash
 function finish {
-  cd $mathics_natlang_owd
+  cd $mathics3_natlang_owd
 }
 
 # FIXME put some of the below in a common routine
-mathics_natlang_owd=$(pwd)
+mathics3_natlang_owd=$(pwd)
 trap finish EXIT
 
 cd $(dirname ${BASH_SOURCE[0]})
